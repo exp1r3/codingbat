@@ -1,0 +1,65 @@
+package test;
+
+public class canBalance {
+    public boolean canBalance(int[] nums) {
+		int len=nums.length;
+		if(len>1) {
+			int sum=0;
+			int half=0;
+			int halfpos=0;
+			int halfsum=0;
+			int lasthafsum=0;
+//sum up whole array//
+			
+			for(int i=0;i<len;i++) {
+				sum=sum+nums[i];
+			}
+//spilting into half to check where the half of the array summed up in the array//			
+			half=sum/2;
+			if(sum%2==0) {
+				//in the case there's only 2 element in the array list and their sum is a even number//
+			  if(len==2){
+			    return true;
+			  }
+			  //finding the first half of the added number and setting the position of I for the first side sum//
+				for(int i=0;i<len;i++) {
+					halfsum=halfsum+nums[i];
+					if(halfsum==half) {
+						halfpos=i;
+						continue;
+					}
+				}
+				// if the sum can't be solved by adding up the number and spilting it in 2 part it will never be equal to one side to other, so the array position going to sitted in 0, and it must
+				//return false;
+				
+				if(halfpos==0) {
+					return false;
+				}
+				// adding the 2nd side of the array list element and checking if it's equals to the first half//
+				else if(halfpos!=0) {
+					for(int j=halfpos+1;j<len;j++) {
+						lasthafsum=lasthafsum+nums[j];
+						if(lasthafsum==half) {
+							return true;
+						}
+					}										
+				}
+//				else if(halfsum==lasthafsum) {
+//					return true;
+//				}
+			}
+		}
+	
+        return false;
+    }
+
+	public static void main(String[] args) {
+		int []arr= {1, 1, 1, 2, 1};
+		canBalance checkBalance=new canBalance();
+		boolean result=checkBalance.canBalance(arr);
+		System.out.println(result);
+		
+
+	}
+
+}
