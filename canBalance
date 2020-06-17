@@ -19,7 +19,10 @@ public class canBalance {
 			if(sum%2==0) {
 				//in the case there's only 2 element in the array list and their sum is a even number//
 			  if(len==2){
-			    return true;
+			  if(nums[0]==nums[1]){
+			  return true;
+			  }
+			    return false;
 			  }
 			  //finding the first half of the added number and setting the position of I for the first side sum//
 				for(int i=0;i<len;i++) {
